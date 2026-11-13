@@ -1,0 +1,7 @@
+// Strait of Hormuz Risk Intelligence - DAX Measure Library
+
+Observed Brent Price = LASTNONBLANKVALUE(dim_date[year_month], AVERAGE(fact_macro_monthly[brent_usd]))
+Selected Oil Shock % = SELECTEDVALUE(dim_scenario[oil_shock_pct], 0) / 100
+Modeled Stressed Brent = [Observed Brent Price] * (1 + [Selected Oil Shock %])
+Hormuz Risk Index = SELECTEDVALUE(dim_scenario[risk_index], 24)
+Average Exposure Score = AVERAGE(dim_company[base_exposure_score])

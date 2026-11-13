@@ -1,0 +1,6 @@
+scenario_id,scenario_name,flow_disruption_pct,oil_shock_pct,freight_shock_pct,inflation_pressure_pct,risk_index,risk_band
+1,Normal,0.0,0.0,0.0,0.0,24,LOW RISK
+2,Limited Disruption,15.0,12.0,8.5,2.1,42,MODERATE RISK
+3,Moderate Disruption,35.0,28.0,22.0,4.8,61,ELEVATED RISK
+4,Severe Disruption,65.0,55.0,44.0,8.6,80,HIGH RISK
+5,Full Closure,100.0,100.0,72.0,14.5,96,CRITICAL RISK

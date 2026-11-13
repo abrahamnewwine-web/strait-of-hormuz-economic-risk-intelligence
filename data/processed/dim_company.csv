@@ -1,0 +1,9 @@
+company_id,ticker,company_name,industry,base_exposure_score,impact_tier,oil_beta,freight_beta
+1,DAL,Delta Air Lines,Airlines,100,Very High,-0.18,-0.05
+2,UAL,United Airlines,Airlines,100,Very High,-0.19,-0.05
+3,UPS,UPS,Logistics,100,Very High,-0.11,-0.14
+4,FDX,FedEx,Logistics,100,Very High,-0.11,-0.15
+5,WMT,Walmart,Retail,55,Moderate,-0.04,-0.09
+6,AMZN,Amazon,Retail,55,Moderate,-0.03,-0.08
+7,CVX,Chevron,Energy,82,High,0.16,0.02
+8,XOM,ExxonMobil,Energy,82,High,0.17,0.02
