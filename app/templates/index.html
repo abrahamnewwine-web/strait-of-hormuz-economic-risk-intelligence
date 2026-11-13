@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strait of Hormuz Economic Risk Intelligence</title>
+  <link rel="stylesheet" href="/static/css/dashboard.css" />
+  <script src="/static/vendor/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="brand-badge">GEO-MACRO BI</div>
+      <div>
+        <h1>Strait of Hormuz Economic Risk &amp; Macroeconomic Stress Intelligence</h1>
+        <p class="subtitle">Chokepoint Vulnerability, Energy Inflation Pass-Through &amp; Fortune 500 Exposure Matrix</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <span id="modeBadge" class="mode-badge baseline">Observed Baseline Only</span>
+      <span id="asOfBadge" class="asof-badge">As of —</span>
+      <a id="exportBtn" class="btn btn-outline" href="/api/export/exposure.csv">Export Exposure CSV</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="control-bar">
+      <div class="scenario-strip">
+        <span class="control-label">Scenario Stress Preset:</span>
+        <div id="scenarioButtons" class="scenario-buttons"></div>
+      </div>
+      <div class="filter-controls">
+        <label>
+          Year
+          <select id="yearFilter"><option value="">All Years</option></select>
+        </label>
+        <label>
+          Month
+          <select id="monthFilter"><option value="">All Months</option></select>
+        </label>
+        <label>
+          Industry
+          <select id="industryFilter"><option value="All">All Industries</option></select>
+        </label>
+        <button id="resetBtn" class="btn btn-secondary" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="hero-grid">
+      <article class="card risk-gauge-card">
+        <div class="card-header">
+          <h2>Hormuz Risk Index &amp; Shock Parameters</h2>
+          <span id="riskBandBadge" class="risk-pill">LOW RISK</span>
+        </div>
+        <div class="risk-body">
+          <div class="gauge-wrap">
+            <canvas id="riskGaugeChart" width="210" height="125"></canvas>
+            <div class="gauge-value"><span id="riskScore">24</span><small>/100</small></div>
+          </div>
+          <div class="shock-metrics">
+            <div class="shock-item"><span>Flow Disruption</span><strong id="flowShock">0.0%</strong></div>
+            <div class="shock-item"><span>Crude Oil Shock</span><strong id="oilShock">0.0%</strong></div>
+            <div class="shock-item"><span>Freight Cost Shock</span><strong id="freightShock">0.0%</strong></div>
+            <div class="shock-item"><span>Inflation Pressure</span><strong id="infShock">0.0%</strong></div>
+          </div>
+        </div>
+        <p id="riskSummary" class="risk-summary"></p>
+      </article>
+
+      <article class="card chokepoint-card">
+        <div class="card-header">
+          <h2>Global Chokepoint Exposure Profile</h2>
+          <span class="muted-tag">EIA / Maritime Structural Baseline</span>
+        </div>
+        <div id="chokepointGrid" class="chokepoint-grid"></div>
+      </article>
+    </section>
+
+    <section class="macro-grid" id="macroCards"></section>
+
+    <section class="charts-grid">
+      <article class="card chart-card">
+        <div class="card-header">
+          <h2>Crude Oil Trajectory &amp; Scenario Stress Target ($/bbl)</h2>
+          <span class="chart-tag">Brent vs WTI</span>
+        </div>
+        <div class="canvas-box"><canvas id="oilChart"></canvas></div>
+      </article>
+      <article class="card chart-card">
+        <div class="card-header">
+          <h2>Scenario Stress Escalation Profile (5 Regimes)</h2>
+          <span class="chart-tag">Modeled Shocks %</span>
+        </div>
+        <div class="canvas-box"><canvas id="scenarioMatrixChart"></canvas></div>
+      </article>
+      <article class="card chart-card">
+        <div class="card-header">
+          <h2>Inflation &amp; Global Freight Index Pass-Through</h2>
+          <span class="chart-tag">Observed Historical Time Series</span>
+        </div>
+        <div class="canvas-box"><canvas id="inflationChart"></canvas></div>
+      </article>
+      <article class="card chart-card">
+        <div class="card-header">
+          <h2>Fortune 500 Modeled Equity Impact by Scenario (%)</h2>
+          <span class="chart-tag">Airlines / Logistics vs Energy</span>
+        </div>
+        <div class="canvas-box"><canvas id="companyImpactChart"></canvas></div>
+      </article>
+    </section>
+
+    <section class="card table-card">
+      <div class="card-header">
+        <h2>Fortune 500 Corporate Exposure Matrix</h2>
+        <span class="muted-tag">Observed Equity Pricing Combined with Transparent Oil/Freight Beta Stress</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ticker</th>
+              <th>Company</th>
+              <th>Industry</th>
+              <th>Impact Tier</th>
+              <th class="num">Base Exposure</th>
+              <th class="num">Observed Close ($)</th>
+              <th class="num">Observed 1M Return</th>
+              <th class="num">Modeled Scenario Impact</th>
+            </tr>
+          </thead>
+          <tbody id="exposureTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Prepared by <strong>Abraham Adetola</strong> — Business Intelligence &amp; Macroeconomic Risk Portfolio</span>
+    <span>Historical series labeled separately from scenario stress model estimates.</span>
+  </footer>
+
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
