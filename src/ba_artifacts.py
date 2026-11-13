@@ -172,12 +172,13 @@ def build_executive_pdf(out_path: Path, normal: dict, severe: dict, full: dict) 
     return out_path
 
 
-def generate_all_ba_artifacts() -> dict[str, str]:
+def generate_all_ba_artifacts(out_dir: Path | None = None) -> dict[str, str]:
     """Generate Excel RTM, Excel UAT Log, and PDF Executive Insights Report."""
+    target_dir = out_dir or DOCS_BA_DIR
     normal = get_dashboard_data(FilterParams(scenario="Normal"))
     severe = get_dashboard_data(FilterParams(scenario="Severe Disruption"))
     full = get_dashboard_data(FilterParams(scenario="Full Closure"))
-    rtm = build_rtm_workbook(DOCS_BA_DIR / "rtm_workbook.xlsx")
-    uat = build_uat_workbook(DOCS_BA_DIR / "uat_test_log.xlsx", normal, full)
-    pdf = build_executive_pdf(DOCS_BA_DIR / "executive_insights_report.pdf", normal, severe, full)
+    rtm = build_rtm_workbook(target_dir / "rtm_workbook.xlsx")
+    uat = build_uat_workbook(target_dir / "uat_test_log.xlsx", normal, full)
+    pdf = build_executive_pdf(target_dir / "executive_insights_report.pdf", normal, severe, full)
     return {"rtm": str(rtm), "uat": str(uat), "pdf": str(pdf)}

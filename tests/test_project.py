@@ -9,6 +9,7 @@ from fastapi.testclient import TestClient
 from app.main import app
 from src.analytics import FilterParams, get_dashboard_data, get_filter_options
 from src.ba_artifacts import generate_all_ba_artifacts
+from src.config import DOCS_BA_DIR
 from src.pipeline import run_pipeline
 
 client = TestClient(app)
@@ -69,11 +70,14 @@ def test_api_dashboard_and_invalid_scenario() -> None:
     assert bad.status_code == 400
 
 
-def test_csv_export_and_ba_artifacts() -> None:
+def test_csv_export_and_ba_artifacts(tmp_path: Path) -> None:
     csv_resp = client.get("/api/export/exposure.csv?scenario=Full+Closure")
     assert csv_resp.status_code == 200
     assert "DAL,Delta Air Lines,Airlines" in csv_resp.text
 
-    artifacts = generate_all_ba_artifacts()
+    artifacts = generate_all_ba_artifacts(out_dir=tmp_path)
     for p in artifacts.values():
         assert Path(p).exists() and Path(p).stat().st_size > 1000
+    assert (DOCS_BA_DIR / "rtm_workbook.xlsx").exists()
+    assert (DOCS_BA_DIR / "uat_test_log.xlsx").exists()
+    assert (DOCS_BA_DIR / "executive_insights_report.pdf").exists()
